@@ -1,0 +1,75 @@
+﻿@page "/archieve/add"
+@page "/archieve/edit/{archieveId:int}"
+@using chaabene.Models;
+@inject Service.Archieve_Service.IArchieveService archiveService
+@inject Service.Offer_Service.IOfferService OfferService
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
+<a href="/archieves" class="btn btn-outline-dark">Show All</a>
+<div class="row">
+    <div class="col-md-6">
+        <EditForm Model="@archieve" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label for="archiveDate">Archive Date</label>
+                <InputDate class="form-control" id="archiveDate" name="archiveDate" @bind-Value="archieve.Archive" />
+                <ValidationMessage For="@(()=>archieve.Archive)" />
+            </div>
+
+            <div class="form-group">
+                <label for="offerId">Offer</label>
+                <InputSelect class="form-control" id="offerId" name="offerId" @bind-Value="archieve.offerId">
+                    @foreach (var offer in offerList)
+                    {
+                            <option value="@offer.Id">@offer</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(()=>archieve.offerId)" />
+            </div>
+
+            <div class="my-2">
+                @message
+            </div>
+            <div class="my-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int archieveId { get; set; }
+    private Archieve archieve = new Archieve();
+    private string message = string.Empty;
+    private string Title = "Add Archive";
+    private List<Offer> offerList = new List<Offer>();
+    private void Save()
+    {
+        if (archiveService.AddUpdateArchieve(archieve))
+        {
+            if (archieveId > 0)
+                message = "Successfully edited";
+            else
+                message = "Successfully added";
+            archieve = new Archieve();
+        }
+        else
+        {
+            message = "Could not save";
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        archieve.Archive = DateTime.Now;
+        offerList = OfferService.GetAllOffers();
+        if (archieveId > 0)
+        {
+            archieve = archiveService.GetArchieveById(archieveId);
+            Title = "Update Archive";
+        }
+        base.OnInitialized();
+    }
+}

@@ -1,0 +1,74 @@
+﻿@page "/offer/add"
+@page "/offer/edit/{offerId:int}"
+@using chaabene.Models;
+@inject Service.Offer_Service.IOfferService offerService
+@inject Service.OfferDetail_Service.IOfferDetailService offerDetailService
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
+<a href="/offers" class="btn btn-outline-dark">Show All</a>
+<div class="row">
+	<div class="col-md-6">
+		<EditForm Model="@offer" OnValidSubmit="Save">
+			<DataAnnotationsValidator />
+
+			<div class="form-group">
+				<label for="date">Date</label>
+				<InputDate class="form-control" id="date" name="date" @bind-Value="offer.date" />
+				<ValidationMessage For="@(()=>offer.date)" />
+			</div>
+
+			<div class="form-group">
+				<label for="offerDetailId">Offer Detail ID</label>
+				<InputSelect class="form-control" id="offerDetailId" name="offerDetailId" @bind-Value="offer.offerDetailId">
+					@foreach (var offerDetail in offerDetailList)
+					{
+						<option value="@offerDetail.Id">@offerDetail</option>
+					}
+				</InputSelect>
+				<ValidationMessage For="@(()=>offer.offerDetailId)" />
+			</div>
+
+			<div class="my-2">
+				@message
+			</div>
+			<div class="my-2">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</EditForm>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public int offerId { get; set; }
+	private Offer offer = new Offer();
+	private string message = string.Empty, Title = "Add Offer";
+	private List<OfferDetail> offerDetailList = new List<OfferDetail>();
+	private void Save()
+	{
+		if (offerService.AddUpdateOffer(offer))
+		{
+			if (offerId > 0)
+				message = "Successfully edited";
+			else
+				message = "Successfully added";
+			offer = new Offer();
+		}
+		else
+		{
+			message = "Could not be saved";
+		}
+	}
+
+	protected override void OnInitialized()
+	{
+		offer.date = DateTime.Now;
+		offerDetailList = offerDetailService.GetAllOfferDetails();
+		if (offerId > 0)
+		{
+			offer = offerService.GetOfferById(offerId);
+			Title = "Update Offer";
+		}
+		base.OnInitialized();
+	}
+}

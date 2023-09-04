@@ -1,0 +1,52 @@
+﻿@page "/products"
+@using chaabene.Models;
+@inject Service.Product_Service.IProductService productService
+@inject IJSRuntime jsRuntime
+<h3>products</h3>
+<a href="/product/add" class="btn btn-outline-dark">Add</a>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Subtype</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in productList)
+		{
+		<tr>
+			<td>@product.Id</td>
+			<td>@product.Name</td>
+			<td>@product.type</td>
+			<td>@product.subtype</td>
+			<td>
+				<a href="/product/edit/@product.Id" class="btn btn-success">Edit</a>
+				<a class="btn btn-danger" @onclick="async ()=>await Delete(product)">Delete</a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+	</div>
+</div>
+@code {
+	private List<Product> productList = new List<Product>();
+	protected override void OnInitialized()
+	{
+		productList = productService.GetAllProducts();
+		base.OnInitialized();
+	}
+	private async Task Delete(Product product)
+	{
+		bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete " + product.Name);
+		if (confirmed)
+			if(productService.DeleteProduct(product.Id))
+					productList.Remove(product);
+
+	}
+}

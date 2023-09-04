@@ -1,0 +1,71 @@
+﻿@page "/product/add"
+@page "/product/edit/{productId:int}"
+@using chaabene.Models;
+@inject Service.Product_Service.IProductService productService
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
+<a href="/products" class="btn btn-outline-dark">Show All</a>
+<div class="row"> 
+    <div class="col-md-6">
+<EditForm Model="@product" OnValidSubmit="Save">
+    <DataAnnotationsValidator/>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText class="form-control" id="name" name="name" @bind-Value="product.Name"/>
+        <ValidationMessage For="@(()=>product.Name)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="type">Type</label>
+        <InputText class="form-control" id="type" name="type" @bind-Value="product.type"/>
+        <ValidationMessage For="@(()=>product.type)"/>
+    </div>
+
+
+    <div class="form-group">
+        <label for="subtype">Subtype</label>
+        <InputText class="form-control" id="subtype" name="subtype" @bind-Value="product.subtype"/>
+        <ValidationMessage For="@(()=>product.subtype)"/>
+    </div>
+
+    <div class="my-2">
+        @message
+    </div>
+    <div class="my-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</EditForm>
+</div>
+</div>
+
+@code {
+    [Parameter]
+    public int productId{ get; set; }
+    private Product product=new Product();
+    private string message = string.Empty,Title="Add Product";
+    private void Save()
+    {
+        if (productService.AddUpdateProduct(product))
+        {
+            if (productId > 0)
+                message = "Sucessfuly edited";
+            else
+                message = "Sucessfuly added";
+            product = new Product();
+        }
+        else
+        {
+            message = "Could not saved";
+        }
+    }
+    protected override void OnInitialized()
+    {
+        if (productId > 0)
+        {
+            product = productService.GetProductById(productId);
+            Title = "Update Product "+product.Name;
+        }
+        base.OnInitialized();
+    }
+}

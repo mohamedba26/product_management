@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = chaabene
+build_property.RootNamespace = chaabene
+build_property.ProjectDir = C:\mohamed\c# 2\chaabene\chaabene\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\mohamed\c# 2\chaabene\chaabene
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/AddUpdateArchieve.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXBkYXRlQXJjaGlldmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/AddUpdateOfferDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXBkYXRlT2ZmZXJEZXRhaWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Archieve/AddUpdateArchieve.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJjaGlldmVcQWRkVXBkYXRlQXJjaGlldmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Archieve/Archieves.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJjaGlldmVcQXJjaGlldmVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/OfferDetail/AddUpdateOfferDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2ZmZXJEZXRhaWxcQWRkVXBkYXRlT2ZmZXJEZXRhaWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/OfferDetail/OfferDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2ZmZXJEZXRhaWxcT2ZmZXJEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Offer/AddUpdateOffer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2ZmZXJcQWRkVXBkYXRlT2ZmZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Offer/Offers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2ZmZXJcT2ZmZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Product/AddUpdateProduct.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxBZGRVcGRhdGVQcm9kdWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Product/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-d3yu1a7dfg
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-6vwicc9rfb
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/mohamed/c\# 2/chaabene/chaabene/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

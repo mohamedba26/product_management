@@ -1,0 +1,53 @@
+﻿@page "/archieves"
+@using chaabene.Models;
+@inject Service.Archieve_Service.IArchieveService archiveService
+@inject IJSRuntime jsRuntime
+<h3>Archives</h3>
+<a href="/archieve/add" class="btn btn-outline-dark">Add</a>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Archive Date</th>
+                    <th>Offer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var archive in archiveList)
+                {
+                        <tr>
+                            <td>@archive.Archive.ToShortDateString()</td>
+                            <td>@archive.offer</td>
+                            <td>
+                                    <a href="/archieve/edit/@archive.Id" class="btn btn-success">Edit</a>
+                                <a class="btn btn-danger" @onclick="async () => await Delete(archive)">Delete</a>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+    private List<Archieve> archiveList = new List<Archieve>();
+
+    protected override void OnInitialized()
+    {
+        archiveList = archiveService.GetAllArchieves();
+        base.OnInitialized();
+    }
+
+    private async Task Delete(Archieve archive)
+    {
+        bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete archive with Id " + archive.Id);
+        if (confirmed)
+        {
+            if (archiveService.DeleteArchieve(archive.Id))
+            {
+                archiveList.Remove(archive);
+            }
+        }
+    }
+}

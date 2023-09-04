@@ -1,0 +1,79 @@
+﻿@page "/offerdetail/add"
+@page "/offerdetail/edit/{offerDetailId:int}"
+@using chaabene.Models;
+@inject Service.OfferDetail_Service.IOfferDetailService offerDetailService
+@inject Service.Product_Service.IProductService ProductService
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
+<a href="/offerdetails" class="btn btn-outline-dark">Show All</a>
+<div class="row">
+	<div class="col-md-6">
+		<EditForm Model="@offerDetail" OnValidSubmit="Save">
+			<DataAnnotationsValidator />
+
+			<div class="form-group">
+				<label for="price">Price</label>
+				<InputNumber class="form-control" id="price" name="price" @bind-Value="offerDetail.price" />
+				<ValidationMessage For="@(()=>offerDetail.price)" />
+			</div>
+
+			<div class="form-group">
+				<label for="quantity">Quantity</label>
+				<InputNumber class="form-control" id="quantity" name="quantity" @bind-Value="offerDetail.quantity" />
+				<ValidationMessage For="@(()=>offerDetail.quantity)" />
+			</div>
+
+			<div class="form-group">
+				<label for="productId">Product ID</label>
+				<InputSelect class="form-control" id="productId" name="productId" @bind-Value="offerDetail.productId">
+					@foreach (var product in @productList)
+					{
+						<option value="@product.Id">@product.Name</option>
+					}
+				</InputSelect>
+				<ValidationMessage For="@(()=>offerDetail.productId)" />
+			</div>
+
+			<div class="my-2">
+				@message
+			</div>
+			<div class="my-2">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</EditForm>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public int offerDetailId { get; set; }
+	private OfferDetail offerDetail = new OfferDetail();
+	private string message = string.Empty, Title = "Add Offer Detail";
+	private List<Product> productList = new List<Product>();
+	private void Save()
+	{
+		if (offerDetailService.AddUpdateOfferDetail(offerDetail))
+		{
+			if (offerDetailId > 0)
+				message = "Successfully edited";
+			else
+				message = "Successfully added";
+			offerDetail = new OfferDetail();
+		}
+		else
+		{
+			message = "Could not be saved";
+		}
+	}
+
+	protected override void OnInitialized()
+	{
+		productList = ProductService.GetAllProducts();
+		if (offerDetailId > 0)
+		{
+			offerDetail = offerDetailService.GetOfferDetailById(offerDetailId);
+			Title = "Update Offer Detail";
+		}
+		base.OnInitialized();
+	}
+}

@@ -1,0 +1,49 @@
+﻿@page "/offers"
+@using chaabene.Models;
+@inject Service.Offer_Service.IOfferService offerService
+@inject IJSRuntime jsRuntime
+<h3>Offers</h3>
+<a href="/offer/add" class="btn btn-outline-dark">Add</a>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Offer Detail</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var offer in offerList)
+                {
+                        <tr>
+                            <td>@offer.Id</td>
+                            <td>@offer.date.ToShortDateString()</td>
+                            <td>@offer.offerDetail</td>
+                            <td>
+                                <a href="/offer/edit/@offer.Id" class="btn btn-success">Edit</a>
+                                <a class="btn btn-danger" @onclick="async () => await Delete(offer)">Delete</a>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+    private List<Offer> offerList = new List<Offer>();
+    protected override void OnInitialized()
+    {
+        offerList = offerService.GetAllOffers();
+        base.OnInitialized();
+    }
+    private async Task Delete(Offer offer)
+    {
+        bool confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this offer?");
+        if (confirmed)
+            if (offerService.DeleteOffer(offer.Id))
+                offerList.Remove(offer);
+    }
+}
